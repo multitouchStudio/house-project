@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html class="no-js antialiased scroll-smooth" lang="{{ request.locale.iso_code }}">
+    <head>
+        <title>{{ page_title }}</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,,chrome=1">
+        <meta name="viewport" content="{{ page_description | escape }}">
+        <link rel="canonical" href="{{ canonical_url }}">
+        {{ 'style.css' |  asset_url |  stylesheet_tag }}
+        {{ content_for_header }}
+    </head>
+    <body>
+        {% sections 'header-group' %}
+        <main role="main">
+            {{ content_for_layout }}
+        </main>
+        {% sections 'footer-group' %}
+        <script src="{{ 'jquery-3.3.1.min.js' |  asset_url }}" defer="defer"></script>
+        {% if settings.show_multiple_currencies %}
+            <script defer="defer" src="//cdn.shopify.com/javascripts/currencies.js"></script>
+            <script defer="defer" src="{{ "jquery.currencies.min.js" |  asset_url }}"></script>
+        {% endif %}
+        <script src="{{ 'global.js' |  asset_url }}" defer="defer"></script>
+        <script>
+            window.shopUrl = '{{ request.origin }}';
+            window.routes = {
+              cart_add_url: '{{ routes.cart_add_url }}',
+              cart_change_url: '{{ routes.cart_change_url }}',
+              cart_update_url: '{{ routes.cart_update_url }}',
+              cart_url: '{{ routes.cart_url }}',
+              predictive_search_url: '{{ routes.predictive_search_url }}',
+              product_recommendations_url: '{{ routes.product_recommendations_url }}',
+            };
+      
+            document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
+          </script>
+    </body>
+</html>

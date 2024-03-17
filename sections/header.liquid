@@ -1,0 +1,43 @@
+<header>
+    <a href="/">
+        {% capture store_name %}
+            {% if settings.store_name_custom != blank and settings.store_name_custom != 'USE_DEFAULT' %}
+                {{ settings.store_name_custom }}
+            {% else %}
+                {{ shop.name }}
+            {% endif %}
+        {% endcapture %}
+        
+        {{ 'general.shop.name' | t: name: store_name }}
+    </a>
+    {% if settings.header_menu_handles %}
+        {% assign menuHandles = settings.header_menu_handles | split: ',' %}
+        {% for handle in menuHandles %}
+            {% assign menu = linklists[handle] %}
+            {% if menu %}
+                <nav aria-label="{{ menu.title }}">
+                    <div class="nav-list">
+                        {% for link in menu.links %}
+                            {% assign child_list_handle = link.title | handleize %}
+                            {% if linklists[child_list_handle].links != blank %}
+                                <a href="{{ link.url }}">{{ link.title }}</a>
+                                [{% for childlink in linklists[child_list_handle].links %}
+                                    <a href="{{ childlink.url }}">{{ childlink.title | escape }}</a>
+                                {% endfor %}]
+                            {% else %}
+                                <a href="{{ link.url }}">{{ link.title }}</a>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </nav>
+            {% else %}
+                <p>Menu with handle "{{ handle }}" not found.</p>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+    <a href="/search">Search</a>
+        {% render 'currency-picker' %}
+    <a href="/cart">
+        {{ 'cart.button-header.count_html' | t: itemCount: cart.item_count }}
+    </a>
+</header>

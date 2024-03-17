@@ -1,0 +1,37 @@
+{
+    "general": {
+        "shop": {
+            "name": "{{ name }}"
+        }
+    },
+    "footer": {
+        "bottom": {
+            "copyright": "©{{ date }} {{ name }} Inc."
+        }
+    },
+    "cart": {
+        "button": {
+          "filled": "Your Cart",
+          "empty": "Your Cart is empty",
+          "close": "Close"
+        },
+        "general": {
+          "title": "Cart",
+          "preorder_info": "All preorders ship free this March.",
+          "support_title": "Any questions?",
+          "support_email": "support@getfitra.com",
+          "checkout": "Checkout",
+          "empty": "Your cart is empty",
+          "back": "Back to Fitra"
+        },
+        "lines": {
+          "title": "Order Summary",
+          "shipping": "Shipping",
+          "subtotal": "Subtotal",
+          "free": "Free"
+        },
+        "button-header": {
+          "count_html": "Cart (<span class=\"js-cart-item-count\">{{ itemCount }}<\/span>)"
+        }
+      }
+    }
